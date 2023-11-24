@@ -1,10 +1,10 @@
 terraform {
-  required_version = "~> 1.0.2"
+  required_version = ">=1.0.2"
 
   backend "s3" {
-    bucket = "{{BUCKET-NAME}}"
+    bucket = "backstage-demo-aws"
     key    = "tf-state.json"
-    region = "eu-west-1"
+    region = "us-west-2"
     workspace_key_prefix = "environment"
   }  
 
