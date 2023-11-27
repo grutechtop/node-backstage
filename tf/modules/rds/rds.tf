@@ -20,9 +20,9 @@ resource "aws_db_instance" "default_db" {
   identifier              = var.project
   name                    = "backstagedb"
   allocated_storage       = var.storage
-  storage_type            = "gp2"
+  storage_type            = "gp3"
   engine                  = "postgres"
-  engine_version          = "13.2"
+  engine_version          = "13.12"
   parameter_group_name    = "default.postgres13"
   instance_class          = "db.t3.micro"
   username                = var.username

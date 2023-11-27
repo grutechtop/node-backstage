@@ -49,8 +49,8 @@ resource "aws_ecs_task_definition" "default_task" {
    }
    portMappings = [{
     protocol      = "tcp"
-    containerPort = 7000
-    hostPort      = 7000
+    containerPort = 7007
+    hostPort      = 7007
    }]
   }])
   tags = {
@@ -79,6 +79,6 @@ resource "aws_ecs_service" "default_service" {
   load_balancer {
     target_group_arn = var.target_group_arn
     container_name   = "${var.project}-container"
-    container_port   = 7000
+    container_port   = 7007
   }
 }

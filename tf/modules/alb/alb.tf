@@ -37,7 +37,7 @@ resource "aws_alb" "default_alb" {
 
 resource "aws_alb_target_group" "default_tg" {
   name        = "${var.project}-tg"
-  port        = 7000
+  port        = 7007
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
   target_type = "ip"
