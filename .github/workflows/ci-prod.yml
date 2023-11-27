@@ -22,6 +22,7 @@ jobs:
         npm install -g yarn
         yarn install
         yarn tsc
+        yarn build:backend
         docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE
 
   test-deploy:
