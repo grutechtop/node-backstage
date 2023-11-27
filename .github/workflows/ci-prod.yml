@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Build image
       run: |
-        echo "Build image"
+        docker image build . -f packages/backend/Dockerfile --tag ${{ secrets.BACKSTAGE_DOCKER_IMAGE }}
         echo "Push image"
 
   test-deploy:
