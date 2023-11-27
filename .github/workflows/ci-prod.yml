@@ -1,0 +1,39 @@
+name: Build & Deploy Backstage
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build-and-push-docker:
+    runs-on: [ self-hosted, linux, x64, backstage ]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build image
+      run: |
+        echo "Build image"
+        echo "Push image"
+
+  test-deploy:
+    runs-on: [ self-hosted, linux, x64, backstage ]
+    needs: build-and-push-docker
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Test TF Template
+      run: |
+        echo "Test TF Template"
+
+  deploy:
+    runs-on: [ self-hosted, linux, x64, backstage ]
+    needs: test-deploy
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Deploy to AWS
+      run: |
+        echo "Deploy to AWS"
