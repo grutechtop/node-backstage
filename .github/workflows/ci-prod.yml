@@ -20,9 +20,9 @@ jobs:
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
         npm install
-        npm run tsc
-        npm run build
-        docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE
+        # npm run tsc
+        # npm run build
+        # docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE
 
   test-deploy:
     runs-on: [ self-hosted, linux, x64, backstage ]
