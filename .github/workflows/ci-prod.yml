@@ -16,7 +16,7 @@ jobs:
     - name: Build image
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
-        docker image build . -f packages/backend/Dockerfile --tag ${{ secrets.BACKSTAGE_DOCKER_IMAGE }}
+        docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE
         echo "Push image"
 
   test-deploy:
