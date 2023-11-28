@@ -16,9 +16,9 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.7'
+    # - uses: actions/setup-python@v4
+    #   with:
+    #     python-version: '3.7'
     - name: Build And Push Image
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
