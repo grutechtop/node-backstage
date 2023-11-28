@@ -13,10 +13,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18.4.0'
-        cache: 'npm'
     - uses: actions/setup-python@v2
       with:
         python-version: '3.7'
@@ -27,10 +23,6 @@ jobs:
     - name: Build And Push Image
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
-        npm install -g yarn
-        yarn install
-        yarn tsc
-        yarn build:backend
         docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $BACKSTAGE_DOCKER_IMAGE_REPOSITORY
 
