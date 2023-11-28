@@ -16,10 +16,7 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
-    - name: Install AWS-CLI
-      run: |
-        python -m ensurepip --upgrade
-        python -m pip install awscli
+    - uses: chrislennon/action-aws-cli@v1.1
     - name: Build And Push Image
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
