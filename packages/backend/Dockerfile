@@ -8,11 +8,8 @@
 # yarn build:backend
 #
 # Once the commands have been run, you can build the image using `yarn build-image`
+
 FROM node:18-bookworm-slim
-COPY . .
-RUN yarn install && \
-    yarn tsc && \
-    yarn build:backend
 
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
