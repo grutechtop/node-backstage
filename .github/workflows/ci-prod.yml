@@ -45,7 +45,7 @@ jobs:
     - name: Test TF Template
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
-        cd tf && terraform test
+        cd tf && terraform init && terraform test
 
   deploy:
     runs-on: [ self-hosted, linux, x64, backstage ]
@@ -63,4 +63,4 @@ jobs:
     - name: Deploy to AWS
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
-        cd tf && terraform apply -auto-approve
+        cd tf && terraform init && terraform apply -auto-approve
