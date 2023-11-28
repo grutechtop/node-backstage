@@ -16,9 +16,6 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
-    # - uses: actions/setup-python@v4
-    #   with:
-    #     python-version: '3.7'
     - name: Build And Push Image
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
@@ -35,13 +32,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-node@v4
       with:
-        python-version: '3.8'
+        node-version: 18
     - name: Install AWS-CLI
       run: |
-        python -m pip install --upgrade pip
-        pip install awscli
+        npm install -g yarn aws-cli
     - uses: hashicorp/setup-terraform@v3
     - name: Test TF Template
       run: |
@@ -54,13 +50,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-node@v4
       with:
-        python-version: '3.8'
+        node-version: 18
     - name: Install AWS-CLI
       run: |
-        python -m pip install --upgrade pip
-        pip install awscli
+        npm install -g yarn aws-cli
     - uses: hashicorp/setup-terraform@v3
     - name: Deploy to AWS
       run: |
