@@ -16,10 +16,13 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
+    - name: Install AWS-CLI
+      run: |
+        npm install -g aws-cli
     - name: Build And Push Image
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
-        npm install -g yarn aws-cli
+        npm install -g yarn
         yarn install
         yarn tsc
         yarn build:backend
