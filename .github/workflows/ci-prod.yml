@@ -26,9 +26,10 @@ jobs:
         yarn install
         yarn tsc
         yarn build:backend
-        docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME
+        export GITHUB_SHORT_SHA="$(echo $GITHUB_SHA | cut -c1-8)"
+        docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME:GITHUB_SHORT_SHA
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $BACKSTAGE_DOCKER_IMAGE_REPOSITORY
-        docker push $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME
+        docker push $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME:GITHUB_SHORT_SHA
 
   test-deploy:
     runs-on: [ self-hosted, linux, x64, backstage ]
