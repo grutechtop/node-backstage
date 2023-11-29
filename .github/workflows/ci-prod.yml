@@ -28,6 +28,7 @@ jobs:
         yarn build:backend
         docker image build . -f packages/backend/Dockerfile --tag $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $BACKSTAGE_DOCKER_IMAGE_REPOSITORY
+        docker push $BACKSTAGE_DOCKER_IMAGE_REPOSITORY/$BACKSTAGE_DOCKER_IMAGE_NAME
 
   test-deploy:
     runs-on: [ self-hosted, linux, x64, backstage ]
