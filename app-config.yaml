@@ -43,8 +43,7 @@ integrations:
     #   apiBaseUrl: https://ghe.example.net/api/v3
     #   token: ${GHE_TOKEN}
   awsS3:
-    - endpoint: ${BUCKET_NAME}
-      accessKeyId: ${AWS_ACCESS_KEY_ID}
+    - accessKeyId: ${AWS_ACCESS_KEY_ID}
       secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
 
 proxy:
