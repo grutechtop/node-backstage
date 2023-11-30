@@ -56,6 +56,9 @@ import {
 } from '@backstage/catalog-model';
 import {
   EntityAWSCodePipelineContent,
+  EntityAWSCodePipelineOverviewCard,
+  EntityAWSCodeBuildProjectOverviewCard,
+  EntityAWSCodeDeployDeploymentGroupOverviewCard,
   isAWSCodePipelineAvailable,
   isAWSCodeBuildProjectAvailable,
   isAWSCodeDeployDeploymentGroupAvailable,
@@ -158,15 +161,11 @@ const serviceEntityPage = (
             <EntityAWSCodePipelineOverviewCard />
           </Grid>
         </EntitySwitch.Case>
-      </EntitySwitch>
-      <EntitySwitch>
         <EntitySwitch.Case if={isAWSCodeBuildProjectAvailable}>
           <Grid item sm={6}>
             <EntityAWSCodeBuildProjectOverviewCard />
           </Grid>
         </EntitySwitch.Case>
-      </EntitySwitch>
-      <EntitySwitch>
         <EntitySwitch.Case if={isAWSCodeDeployDeploymentGroupAvailable}>
           <Grid item sm={6}>
             <EntityAWSCodeDeployDeploymentGroupOverviewCard />
