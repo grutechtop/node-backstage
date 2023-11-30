@@ -47,6 +47,7 @@ jobs:
     - name: Test TF Template
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
+        export TF_VAR_docker_image_tag="$(echo $GITHUB_SHA | cut -c1-8)"
         cd tf && terraform init && terraform test
 
   deploy:
@@ -65,4 +66,5 @@ jobs:
     - name: Deploy to AWS
       run: |
         export $(echo ${{ secrets.ENV_FILE }} | base64 --decode | xargs)
+        export TF_VAR_docker_image_tag="$(echo $GITHUB_SHA | cut -c1-8)"
         cd tf && terraform init && terraform apply -auto-approve
