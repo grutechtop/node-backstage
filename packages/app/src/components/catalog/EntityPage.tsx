@@ -154,7 +154,6 @@ const overviewContent = (
 const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
-      {overviewContent}
       <EntitySwitch>
         <EntitySwitch.Case if={isAWSCodePipelineAvailable}>
           <Grid item sm={6}>
