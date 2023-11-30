@@ -43,7 +43,7 @@ integrations:
     #   apiBaseUrl: https://ghe.example.net/api/v3
     #   token: ${GHE_TOKEN}
   awsS3:
-    - endpoint: ${BACKSTAGE_S3_ENDPOINT}
+    - endpoint: ${BUCKET_NAME}
       accessKeyId: ${AWS_ACCESS_KEY_ID}
       secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
 
@@ -66,7 +66,7 @@ techdocs:
   publisher:
     type: 'awsS3' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
     awsS3:
-      bucketName: ${BACKSTAGE_S3_ENDPOINT}
+      bucketName: ${BUCKET_NAME}
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
