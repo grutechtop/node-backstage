@@ -31,8 +31,7 @@ resource "aws_ecs_task_definition" "default_task" {
       {"name": "ACCESS_KEY_ID", "valueFrom": var.access_key_id_arn},
       {"name": "SECRET_ACCESS_KEY", "valueFrom": var.secret_access_key_arn},
       {"name": "AWS_ACCESS_KEY_ID", "valueFrom": var.access_key_id_arn},
-      {"name": "AWS_SECRET_ACCESS_KEY", "valueFrom": var.secret_access_key_arn},
-      {"name": "AWS_REGION", "valueFrom": var.default_region}
+      {"name": "AWS_SECRET_ACCESS_KEY", "valueFrom": var.secret_access_key_arn}
     ]
     environment: [
       {"name": "APP_DOMAIN", "value": "http://${var.alb_dns_name}"},
@@ -40,7 +39,8 @@ resource "aws_ecs_task_definition" "default_task" {
       {"name": "BACKEND_URL", "value": "http://${var.alb_dns_name}"},
       {"name": "POSTGRES_PORT", "value": "5432"},
       {"name": "DEFAULT_REGION", "value": var.default_region},
-      {"name": "BUCKET_NAME", "value": var.tech_docs_bucket_name}
+      {"name": "BUCKET_NAME", "value": var.tech_docs_bucket_name},
+      {"name": "AWS_REGION", "valueFrom": var.default_region}
    ],
    logConfiguration = {
     logDriver = "awslogs"
