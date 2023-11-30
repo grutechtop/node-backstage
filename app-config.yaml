@@ -65,6 +65,8 @@ techdocs:
     runIn: 'docker' # Alternatives - 'local'
   publisher:
     type: 'awsS3' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    awsS3:
+      bucketName: ${BACKSTAGE_S3_ENDPOINT}
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
