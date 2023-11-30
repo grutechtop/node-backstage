@@ -54,6 +54,12 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
+import {
+  EntityAWSCodePipelineContent,
+  isAWSCodePipelineAvailable,
+  isAWSCodeBuildProjectAvailable,
+  isAWSCodeDeployDeploymentGroupAvailable,
+} from '@aws/aws-codeservices-plugin-for-backstage';
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
@@ -73,7 +79,9 @@ const cicdContent = (
     <EntitySwitch.Case if={isGithubActionsAvailable}>
       <EntityGithubActionsContent />
     </EntitySwitch.Case>
-
+    <EntitySwitch.Case if={isAWSCodePipelineAvailable}>
+      <EntityAWSCodePipelineContent />
+    </EntitySwitch.Case>
     <EntitySwitch.Case>
       <EmptyState
         title="No CI/CD available for this entity"
@@ -144,6 +152,27 @@ const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+      <EntitySwitch>
+        <EntitySwitch.Case if={isAWSCodePipelineAvailable}>
+          <Grid item sm={6}>
+            <EntityAWSCodePipelineOverviewCard />
+          </Grid>
+        </EntitySwitch.Case>
+      </EntitySwitch>
+      <EntitySwitch>
+        <EntitySwitch.Case if={isAWSCodeBuildProjectAvailable}>
+          <Grid item sm={6}>
+            <EntityAWSCodeBuildProjectOverviewCard />
+          </Grid>
+        </EntitySwitch.Case>
+      </EntitySwitch>
+      <EntitySwitch>
+        <EntitySwitch.Case if={isAWSCodeDeployDeploymentGroupAvailable}>
+          <Grid item sm={6}>
+            <EntityAWSCodeDeployDeploymentGroupOverviewCard />
+          </Grid>
+        </EntitySwitch.Case>
+      </EntitySwitch>
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
